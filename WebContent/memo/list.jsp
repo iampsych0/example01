@@ -52,7 +52,81 @@
 				<td>등록일</td>
 			</tr>
 	
+			<% 
+				for(int i=0; i<list.size(); i++){
+					MemoDTO imsiDto = list.get(i);
+					String content = imsiDto.getContent();
+					content = content.replace("\n", "<br>");
+			%>
+				<tr>
+					<td><%=jj %></td>
+					<td><a href="#" onclick="move('memo_view', '<%=imsiDto.getNo() %>');"> <%=imsiDto.getWriter() %></a></td>
+					<td><%=imsiDto.getContent() %></td>
+					<td><%=imsiDto.getRegiDate() %></td>
+				</tr>
+			<% 
+					jj--;
+				} 
+			%>
 			
+			<% if(totalRecord > 0) { %>
+			<tr>
+				<td colspan="6" align="center" style="padding : 10px 10px;">
+					<a href='#' onclick="move('memo_list', '', '<%=searchGubun %>', '<%=searchData %>', '1');">[첫페이지]</a>
+					&nbsp;
+					
+					<%
+						if (block > 0) {
+							int imsiPage = (block - 1) * blockSize + 10;
+					%>
+						<a href='#' onclick="move('memo_list', '', '<%=searchGubun %>', '<%=searchData %>', '<%=imsiPage %>');">[이전10개] </a>
+					<% } else {%>
+							[이전10개]
+					<% } %>
+					&nbsp;
+					<%
+						for(int goPage=1; goPage<=blockSize; goPage++){
+							int imsiValue = block * blockSize + goPage;
+							if(totalPage - imsiValue >= 0){
+								if(imsiValue == pageNumber) {
+					%>
+									[<%=imsiValue %>]
+					<%				
+								}else {
+					%>
+								<a href='#' onclick="move('memo_list', '', '<%=searchGubun %>', '<%=searchData %>', '<%=imsiValue %>');"><%=imsiValue %> </a>
+					<%				
+								}
+								out.println("&nbsp;");
+							}
+						}
+					%>
+					&nbsp;
+					<%
+						int totalBlock = totalPage / blockSize;
+						double value1 = (double)totalBlock;
+						double value2 = totalPage / blockSize;
+						if(value1 - value2 == 0){
+							totalBlock = totalBlock - 1;
+						}
+						
+						if(block - totalBlock < 0){
+							int yyy = (block + 1) * blockSize + 1;
+							int zzz = block +1;
+						
+					%>
+							<a href='#' onclick="move('memo_list', '', '<%=searchGubun %>', '<%=searchData %>', '<%=yyy %>');">[다음10개]</a>
+					<% } else { %>
+							[다음10개]
+					<%
+						} 
+					%>
+					&nbsp;
+					
+					<a href='#' onclick="move('memo_list', '', '<%=searchGubun %>', '<%=searchData %>', '<%=totalPage %>');">[끝페이지]</a>
+				</td>
+			</tr>
+			<% } %>
 		</table>
 	</form>
 <script>
