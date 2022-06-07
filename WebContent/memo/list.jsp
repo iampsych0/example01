@@ -167,11 +167,13 @@
 
 <hr>
 
+<h2>서브 메뉴</h2>
 |
 <a href="#" onclick="move('memo_list', '', '<%=searchGubun %>', '<%=searchData %>', '1')">전체목록</a>
 |
 <a href="#" onclick="move('memo_chuga', '')">등록</a>
 |
+
 
 <script>
 	function move(value1, value2, value3, value4, value5){
