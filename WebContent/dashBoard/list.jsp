@@ -3,6 +3,8 @@
  
  <%@ include file = "../include/inc_header.jsp" %>
  
+ <div style="border: 0px solid red; width: 60%; text-align: center; margin: 0 auto;">
+ 	<font style="font-size: 100px; font-weight: bold;">메모장</font>
  	
  	<% if(sessionNo == 0) { %>
 	 	<div style="padding: 20px 0px;">
