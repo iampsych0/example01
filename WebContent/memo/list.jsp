@@ -69,6 +69,23 @@
 				} 
 			%>
 			
+			<tr>
+				<td colspan="4" style="padding : 10px 0px;">
+					<form name="searchForm">
+						<select name = "searchGubun">
+							<option value="" <%if(searchGubun.equals("")) { out.println("selected");} %>>-- 선택 --</option>
+							<option value="writer" <%if(searchGubun.equals("writer")) { out.println("selected");} %>> 작성자</option>
+							<option value="content" <%if(searchGubun.equals("content")) { out.println("selected");} %>> 내용</option>
+							<option value="writer_content" <%if(searchGubun.equals("name_content")) { out.println("selected");} %>> 작성자+내용</option>
+						</select>
+						&nbsp;
+						<input type="text" name="searchData" value="<%=searchData %>">
+						&nbsp;
+						<button type ="button" onclick="search();">검색</button>
+					</form>
+				</td>
+			</tr>
+			
 			<% if(totalRecord > 0) { %>
 			<tr>
 				<td colspan="6" align="center" style="padding : 10px 10px;">
